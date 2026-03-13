@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support – Whistle App</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b1d33;
+      --navy-mid: #1a3a5c;
+      --blue: #1a56a0;
+      --blue-light: #7db8e8;
+      --accent: #e87d3e;
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --text: #1a1a2e;
+      --text-muted: #556677;
+      --border: #dde6f0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    nav {
+      background: var(--navy);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { font-size: 17px; font-weight: 700; color: var(--white); text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 14px; color: var(--blue-light); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); }
+
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    header h1 { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    header p { font-size: 16px; color: #94b8d4; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .faq-section { margin-bottom: 48px; }
+    .faq-section h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 18px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-q:hover { background: #f0f6ff; }
+    .faq-q .chevron {
+      font-size: 12px;
+      color: var(--blue);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .faq-q.open .chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 20px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+    }
+    .faq-a.visible { display: block; }
+    .faq-a p { margin-bottom: 8px; }
+    .faq-a p:last-child { margin-bottom: 0; }
+
+    .contact-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .contact-section .icon { font-size: 40px; margin-bottom: 12px; }
+    .contact-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .contact-section p { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .contact-section p:last-of-type { margin-bottom: 0; }
+    .email-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      text-decoration: none;
+      padding: 13px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 16px;
+      transition: background 0.15s;
+    }
+    .email-btn:hover { background: #154d8f; }
+    .response-note {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 12px;
+    }
+
+    footer {
+      background: var(--navy);
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; flex-wrap: wrap; }
+    footer a { color: var(--blue-light); font-size: 14px; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    footer .copy { font-size: 13px; color: #556677; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">🎵 Whistle</a>
+  <div class="nav-links">
+    <a href="support.html" class="active">Support</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+</nav>
+
+<header>
+  <h1>Support</h1>
+  <p>Answers to common questions — and a way to reach us if you need more.</p>
+</header>
+
+<div class="container">
+
+  <div class="faq-section">
+    <h2>Using the App</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        How do I play a whistle sound?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Tap any whistle card at the top of the screen to select it, then press the large blow button in the middle of the screen. The sound plays immediately.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        How do I stop the sound while it's playing?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Tap the blow button again while sound is playing — it acts as a stop button. If repeat mode is on, this stops the entire cycle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        What is Repeat Cycle and how does it work?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Toggle the Repeat Cycle switch in the controls section. When enabled, Whistle will play your selected pattern, pause for the Pause Between Cycles duration, then play again — looping continuously until you tap stop.</p>
+        <p>The "Pause Between Cycles" slider appears when Repeat is on, letting you control how long the app waits between each full pattern cycle.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        What do the pattern options mean?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p><strong>Single</strong> — one blast. <strong>Double</strong> — two blasts with a gap between them. <strong>Triple</strong> — three blasts. <strong>Rapid</strong> — five quick blasts in fast succession.</p>
+        <p>When a multi-blast pattern is selected, a "Gap Between Blasts" slider appears so you can control the spacing between each individual blast.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Can I adjust the volume?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes — use the Volume slider in the controls section. This controls Whistle's output level independently from your device volume. Your device volume also affects the final loudness, so for maximum volume raise both.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section">
+    <h2>Sound & Audio</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        The app isn't making any sound. What do I do?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Try these steps in order:</p>
+        <p>1. Check your device volume — make sure it's turned up.</p>
+        <p>2. On iPhone: Whistle plays even in silent mode, but check that the app wasn't paused by a phone call or other interruption. Tap stop, then blow again.</p>
+        <p>3. Force-quit the app and reopen it.</p>
+        <p>4. Restart your device.</p>
+        <p>If none of these work, please contact us using the form below.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Does the app work with my phone on silent?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes — on iPhone, Whistle overrides the silent mode switch so sounds play regardless. This is intentional; a whistle you can't blow in an emergency isn't useful.</p>
+        <p>On Android, audio behavior is controlled by your media volume, not a mute switch.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Will Whistle keep playing if I switch to another app?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Yes. Whistle uses background audio, so sound will continue if you switch apps or lock your screen. This is especially useful with Repeat Cycle enabled.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        I can't hear the Dog Whistle. Is it broken?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>Not broken — by design. The Dog Whistle mode plays an ultrasonic frequency (22,000 Hz) that is above the range of human hearing. Standard smartphone speakers can't reproduce it either. It's a novelty/humor feature. Your dog may or may not react.</p>
+        <p>The visual animation and pattern timing still play out normally, so you can see that the "blast" is happening even if you can't hear it.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="faq-section">
+    <h2>Privacy & Data</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Does Whistle collect any of my data?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>No. Whistle collects no personal information, no usage data, and no analytics. There is no account system, no network connection required, and nothing is ever transmitted from the app. See our <a href="privacy-policy.html" style="color: var(--blue);">Privacy Policy</a> for full details.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Does the app use my microphone?
+        <span class="chevron">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>No. Whistle only plays sounds — it does not record audio, and it does not request microphone access. The app cannot hear you.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contact-section">
+    <div class="icon">✉️</div>
+    <h2>Still need help?</h2>
+    <p>If your question isn't answered above, send us an email and we'll get back to you.</p>
+    <a href="mailto:support@jackedarts.com" class="email-btn">Email Support</a>
+    <p class="response-note">We aim to respond within 2 business days.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+  <p class="copy">© 2026 Jacked Arts · Whistle App</p>
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('open');
+    const answer = el.nextElementSibling;
+    answer.classList.toggle('visible');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whistle – Anywhere, Anytime</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b1d33;
+      --navy-mid: #1a3a5c;
+      --blue: #1a56a0;
+      --blue-light: #7db8e8;
+      --accent: #e87d3e;
+      --white: #ffffff;
+      --off-white: #f8fafc;
+      --text: #1a1a2e;
+      --text-muted: #556;
+      --border: #dde6f0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--navy);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--blue-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 60%, #1a4a7a 100%);
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    .hero-icon { font-size: 72px; margin-bottom: 16px; line-height: 1; }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero .tagline {
+      font-size: 20px;
+      color: var(--blue-light);
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+    .hero .desc {
+      font-size: 17px;
+      color: #94b8d4;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--navy);
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .store-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .store-btn .store-icon { font-size: 22px; }
+    .store-btn .store-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .store-btn .store-sub { font-size: 11px; font-weight: 500; color: #666; }
+
+    /* WHISTLES SECTION */
+    .section { padding: 64px 24px; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .section .sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .whistle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .whistle-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .whistle-card .w-icon { font-size: 32px; flex-shrink: 0; }
+    .whistle-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .whistle-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* FEATURES */
+    .features-bg { background: var(--white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .feature-item { text-align: center; padding: 8px; }
+    .feature-item .f-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .feature-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .feature-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* USE CASES */
+    .use-cases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .use-case-tag {
+      background: #e8f4fd;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .cta-section h2 { font-size: 30px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+    .cta-section p { font-size: 16px; color: #94b8d4; margin-bottom: 32px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    footer a { color: var(--blue-light); font-size: 14px; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    footer .copy { font-size: 13px; color: #556677; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      .hero .tagline { font-size: 17px; }
+      .section h2 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">🎵 Whistle</a>
+  <div class="nav-links">
+    <a href="support.html">Support</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">🎵</div>
+  <h1>Whistle</h1>
+  <div class="tagline">Anywhere, Anytime</div>
+  <p class="desc">Six synthesized whistles in your pocket. Loud, real, and always ready — whether you need a signal, a blast, or a backup when there's no whistle in reach.</p>
+  <div class="store-buttons">
+    <a href="#" class="store-btn">
+      <span class="store-icon">🍎</span>
+      <span class="store-text">
+        <span class="store-sub">Download on the</span>
+        App Store
+      </span>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="store-icon">▶</span>
+      <span class="store-text">
+        <span class="store-sub">Get it on</span>
+        Google Play
+      </span>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">The Whistles</div>
+    <h2>Six Sounds. Every Situation.</h2>
+    <p class="sub">All sounds are synthesized in real time — not recordings, not samples. Authentic trill, breath noise, and harmonics that actually sound like the real thing.</p>
+    <div class="whistle-grid">
+      <div class="whistle-card">
+        <span class="w-icon">📣</span>
+        <div>
+          <h3>The Screamer</h3>
+          <p>A piercing, high-frequency blast. Cover your ears.</p>
+        </div>
+      </div>
+      <div class="whistle-card">
+        <span class="w-icon">🏊</span>
+        <div>
+          <h3>The Guard</h3>
+          <p>Sharp lifeguard authority. Built for immediate attention.</p>
+        </div>
+      </div>
+      <div class="whistle-card">
+        <span class="w-icon">🏃</span>
+        <div>
+          <h3>The Coach</h3>
+          <p>Classic metal pea whistle with commanding presence.</p>
+        </div>
+      </div>
+      <div class="whistle-card">
+        <span class="w-icon">🚔</span>
+        <div>
+          <h3>Old Timer</h3>
+          <p>Warm, vintage tone with rich harmonic depth.</p>
+        </div>
+      </div>
+      <div class="whistle-card">
+        <span class="w-icon">🚢</span>
+        <div>
+          <h3>Foghorn</h3>
+          <p>Deep, resonant bellow. Passing ships take note.</p>
+        </div>
+      </div>
+      <div class="whistle-card">
+        <span class="w-icon">🐕</span>
+        <div>
+          <h3>Dog Whistle</h3>
+          <p>Ultrasonic novelty. Your dog may or may not care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section features-bg">
+  <div class="section-inner">
+    <div class="section-label">Features</div>
+    <h2>Full Control Over Every Blast</h2>
+    <p class="sub">Not just a sound button. Whistle gives you pattern, timing, and volume control — all adjustable live while the app is playing.</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="f-icon">🎛️</span>
+        <h3>Pattern Control</h3>
+        <p>Single, double, triple, or rapid-fire. Set the gap between blasts to the millisecond.</p>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🔁</span>
+        <h3>Repeat Cycle</h3>
+        <p>Enable auto-repeat and Whistle loops your pattern continuously until you tap stop.</p>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">⏱️</span>
+        <h3>Duration & Volume</h3>
+        <p>Dial in blast length from 0.1s to 2.0s. Adjust volume independently from device level.</p>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🔇</span>
+        <h3>Silent Mode Override</h3>
+        <p>Plays even when your iPhone is on silent. Because a whistle that doesn't blow isn't a whistle.</p>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">📵</span>
+        <h3>Fully Offline</h3>
+        <p>No internet required. All sounds are generated on your device. No accounts, no ads.</p>
+      </div>
+      <div class="feature-item">
+        <span class="f-icon">🎵</span>
+        <h3>Background Audio</h3>
+        <p>Switch apps and Whistle keeps playing. Works with repeat cycles for continuous signaling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">Who It's For</div>
+    <h2>Wherever You Need a Signal</h2>
+    <p class="sub">Whistle lives on your phone for the moments when you don't have one handy — and for all the moments you do.</p>
+    <div class="use-cases">
+      <span class="use-case-tag">🥾 Hiking & Outdoors</span>
+      <span class="use-case-tag">🏕️ Camping</span>
+      <span class="use-case-tag">🏊 Pool & Water Safety</span>
+      <span class="use-case-tag">🏃 Sports Coaching</span>
+      <span class="use-case-tag">🚨 Emergency Signaling</span>
+      <span class="use-case-tag">👨‍👩‍👧 Parenting & Crowds</span>
+      <span class="use-case-tag">🎮 Games & Events</span>
+      <span class="use-case-tag">🐕 Dog Training</span>
+      <span class="use-case-tag">🎭 Theater & Production</span>
+      <span class="use-case-tag">😂 Pranks</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Six Whistles. Always Ready.</h2>
+  <p>Free to download. No account. No ads. No internet required.</p>
+  <div class="store-buttons">
+    <a href="#" class="store-btn">
+      <span class="store-icon">🍎</span>
+      <span class="store-text">
+        <span class="store-sub">Download on the</span>
+        App Store
+      </span>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="store-icon">▶</span>
+      <span class="store-text">
+        <span class="store-sub">Get it on</span>
+        Google Play
+      </span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+  <p class="copy">© 2026 Jacked Arts · Whistle App · com.jackedarts.whistle</p>
+</footer>
+
+</body>
+</html>
